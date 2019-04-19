@@ -5114,7 +5114,7 @@ fi
 
 LIB_REMACS="$RUST_DEPS"
 
-LDFLAGS_REMACS="-L../$srcdir/rust_src/target/\${CARGO_BUILD_DIR}"
+LDFLAGS_REMACS='-L$(top_builddir)/rust_src/remacs-lib/target/$(CARGO_BUILD_DIR)'
 
 # On macOS, rand crate needs '_SecRandomCopyBytes' symbol in Security framework.
 if test "${opsys}" = "darwin"; then

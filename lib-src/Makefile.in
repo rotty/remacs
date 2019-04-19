@@ -381,9 +381,11 @@ TAGS: etags${EXEEXT} ${tagsfiles}
 ../lib/libgnu.a: $(config_h)
 	$(MAKE) -C ../lib all
 
-cargo_manifest=../rust_src/remacs-lib/Cargo.toml
+cargo_manifest = $(top_srcdir)/rust_src/remacs-lib/Cargo.toml
 $(RUST_ARCHIVE): $(rust_srcdir)/remacs-lib/**
 	RUSTFLAGS="$(RUSTFLAGS)" \
+	RUSTFLAGS=$(RUSTFLAGS) \
+	CARGO_TARGET_DIR=@abs_top_builddir@/rust_src/remacs-lib/target \
 	$(CARGO_BUILD) $(CARGO_FLAGS) --manifest-path=$(cargo_manifest)
 
 remacs-libclean:
